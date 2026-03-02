@@ -1,0 +1,9 @@
+{
+    "env": {
+        "DB_USER": "krii",
+        "DB_PASSWORD": "krina_2121",
+        "DB_NAME":"mern",
+        "GOOGLE_API_KEY":"",
+        "JWT_KEY":"supersecret_dont_share"
+    }
+}
