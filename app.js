@@ -57,14 +57,19 @@ app.use((error,req, res, next) => {
     res.json({message: error.message || 'An unknown error occurred!'});
 });
 
-mongoose
-.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.aqekprs.mongodb.net/${process.env.DB_NAME}?appName=Cluster0`)
+console.log(process.env.DB_USER);
+console.log(process.env.DB_PASSWORD);
+
+mongoose.connect(
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.aqekprs.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+
+)
 .then(() => {
-    const PORT = process.env.PORT || 5000;
+  const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {
         console.log("Server running on port " + PORT);
     });
 })
 .catch(err => {
-    console.log(err);
+  console.log("MongoDB connection failed:", err);
 });
